@@ -1,0 +1,15 @@
+# Ansible playbook that connects to a Cisco IOS router,
+# gathers facts using ios_facts, and prints the hostname
+# and OS version using the debug module.
+- name: Gather facts from Cisco IOS router
+  hosts: cisco_ios
+  gather_facts: no
+  connection: network_cli
+
+  tasks:
+    - name: Gather IOS facts
+      ios_facts:
+
+    - name: Print hostname and OS version
+      debug:
+        msg: "Hostname: {{ ansible_net_hostname }}, OS Version: {{ ansible_net_version }}"
